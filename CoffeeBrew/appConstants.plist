@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>api_key</key>
+	<string>WuVbkuUsCXHPx3hsQzus4SE</string>
+	<key>app_logo</key>
+	<string>drip-white.png</string>
+	<key>coffee_list</key>
+	<string>coffeelist</string>
+</dict>
+</plist>
