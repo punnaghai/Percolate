@@ -8,7 +8,7 @@
 
 #import "CoffeeLocalStore.h"
 #import "MTLJSONAdapter.h"
-#import "CoffeeConst.h"
+#import "CoffeeHelpers.h"
 
 @implementation CoffeeLocalStore
 
@@ -33,7 +33,7 @@
     }];
     
     if (saveCoffeeOperation) {
-        [[CoffeeConst sharedCoffeeOperationQueue] addOperation:saveCoffeeOperation];
+        [[CoffeeHelpers sharedCoffeeOperationQueue] addOperation:saveCoffeeOperation];
     }
     
     if (!coffeeTypes) return;
@@ -60,7 +60,7 @@
     }];
     
     if (saveCoffeeOperation) {
-        [[CoffeeConst sharedCoffeeOperationQueue] addOperation:saveCoffeeOperation];
+        [[CoffeeHelpers sharedCoffeeOperationQueue] addOperation:saveCoffeeOperation];
     }
     
 }

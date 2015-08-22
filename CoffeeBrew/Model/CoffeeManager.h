@@ -1,5 +1,5 @@
 //
-//  CoffeeBrew.h
+//  CoffeeManager.h
 //  CoffeeBrew
 //
 //  Created by Punnaghai Puvi on 8/16/15.
@@ -14,9 +14,9 @@ extern NSString * const kCoffeeBaseURLString;
 extern NSString * const kCoffeeListString;
 extern NSString * const kCoffeeDetails;
 
-@interface CoffeeBrew : NSObject
+@interface CoffeeManager : NSObject
 
-//+ (CoffeeBrew *)sharedClient;
+//+ (CoffeeManager *)sharedClient;
 +(void) getCoffeeList:(void (^)(NSArray *records))block;
 +(void) getCoffeeDetails:(NSString *)coffeeId block:(void (^)(Coffee *coffee))block;
 

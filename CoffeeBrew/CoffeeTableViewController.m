@@ -9,21 +9,14 @@
 #import "UIImageView+AFNetworking.h"
 #import "CoffeeTableViewController.h"
 #import "CoffeeDetailsViewController.h"
-#import "CoffeeBrew.h"
+#import "CoffeeManager.h"
 #import "Coffee.h"
 #import "CoffeeCell.h"
-#import "CoffeeConst.h"
+#import "CoffeeHelpers.h"
 #import "CoffeeLocalStore.h"
 #import "UIRefreshControl+AFNetworking.h"
 
 static NSString *coffeeCellIdentifier = @"CoffeeCell";
-
-@interface CoffeeTableViewController ()
-
--(Coffee *) getCoffeeDetails:(NSIndexPath *) indexPath;
--(void) loadContent;
-
-@end
 
 @implementation CoffeeTableViewController
 
@@ -36,7 +29,7 @@ NSArray *coffeeList;
     // Do any additional setup after loading the view, typically from a nib.
     
     
-    self.navigationItem.titleView = [[CoffeeConst sharedInstance] getNavigationImage];
+    self.navigationItem.titleView = [[CoffeeHelpers sharedInstance] getNavigationImage];
     
     [self loadContent];
     
@@ -78,35 +71,17 @@ NSArray *coffeeList;
         [cell.imageView removeFromSuperview];
     }
     else{
-    
-    //Create a block operation for loading the image into the profile image view
-    NSBlockOperation *loadImageIntoCellOp = [[NSBlockOperation alloc] init];
-    //Define weak operation so that operation can be referenced from within the block without creating a retain cycle
-    __weak NSBlockOperation *weakOp = loadImageIntoCellOp;
-    [loadImageIntoCellOp addExecutionBlock:^(void){
-        
-        NSURL *imageUrl = [NSURL URLWithString:coffee.ImageURLString];
-        
-        //Once the image is ready, it will load into view on the main queue
-        UIImage *coffeeImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^(void) {
-            //Check for cancelation before proceeding. We use cellForRowAtIndexPath to make sure we get nil for a non-visible cell
-            if (!weakOp.isCancelled) {
-                [cell.coffeeImage setImage:coffeeImage];
+        [CoffeeHelpers downloadImageWithURL:coffee.ImageURLString completionBlock:^(BOOL succeeded, UIImage *image){
+            if (succeeded) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [cell.coffeeImage setImage:image];
+                    
+                });
             }
         }];
-    }];
-    
-    //Add the operation to the designated background queue
-    if (loadImageIntoCellOp) {
-        [[CoffeeConst sharedCoffeeOperationQueue] addOperation:loadImageIntoCellOp];
-    }
-    
-    //Make sure cell doesn't contain any traces of data from reuse -
-    cell.coffeeImage.image = nil;
     }
 }
-
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -156,28 +131,29 @@ NSArray *coffeeList;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchRecordComplete:) name:FETCH_RECORD_COMPLETE object:nil];
     
-    if(![CoffeeLocalStore checkIfFileExists:COFFEE_LIST] && [CoffeeConst isNetworkAvailable]){
-        //file doesnt exist in cache
-        
-        [CoffeeBrew getCoffeeList:^(NSArray *records){
-            
-            [CoffeeLocalStore cacheCoffeeTypes:records];
+    BOOL cacheFileExists = [CoffeeLocalStore checkIfFileExists:COFFEE_LIST];
+    if([CoffeeHelpers isNetworkAvailable]){
+        [CoffeeManager getCoffeeList:^(NSArray *records){
+            if(!cacheFileExists)
+                [CoffeeLocalStore cacheCoffeeTypes:records];
             [[NSNotificationCenter defaultCenter] postNotificationName:FETCH_RECORD_COMPLETE object:records];
         }];
     }
     else{
-        //file exists in cache
-        [CoffeeLocalStore cachedCoffeeTypes:^(NSArray *records){
+        if(cacheFileExists){
+            [CoffeeLocalStore cachedCoffeeTypes:^(NSArray *records){
+        
+                [[NSNotificationCenter defaultCenter] postNotificationName:FETCH_RECORD_COMPLETE object:records];
+            }];
+        }
+        else{
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:FETCH_RECORD_COMPLETE object:records];
-        }];
+            [CoffeeHelpers RemoveObservers:FETCH_RECORD_COMPLETE forObject:self];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"No Internet Connection Avaialble" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alertView show];
+        }
         
     }
-    
-//    [CoffeeBrew getCoffeeList:^(NSArray *records){
-//        coffeeList = records;
-//        [self.tableView reloadData];
-//    }];
 }
 
 -(void) fetchRecordComplete:(NSNotification*)notification{
@@ -188,7 +164,7 @@ NSArray *coffeeList;
     coffeeList = (NSArray *)notification.object;
     
     [self.tableView reloadData];
-    [CoffeeConst RemoveObservers:FETCH_RECORD_COMPLETE forObject:self];
+    [CoffeeHelpers RemoveObservers:FETCH_RECORD_COMPLETE forObject:self];
     
 }
 
@@ -197,6 +173,9 @@ NSArray *coffeeList;
     
     return coffeeItem;
 }
+
+
+
 
 #pragma end
 @end

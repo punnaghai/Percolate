@@ -32,11 +32,11 @@
 		FA89DA471B80149E0006D640 /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = FA89DA341B80149E0006D640 /* UIProgressView+AFNetworking.m */; };
 		FA89DA481B80149E0006D640 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = FA89DA361B80149E0006D640 /* UIRefreshControl+AFNetworking.m */; };
 		FA89DA491B80149E0006D640 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = FA89DA381B80149E0006D640 /* UIWebView+AFNetworking.m */; };
-		FA89DA4D1B80450A0006D640 /* CoffeeBrew.m in Sources */ = {isa = PBXBuildFile; fileRef = FA89DA4C1B80450A0006D640 /* CoffeeBrew.m */; };
+		FA89DA4D1B80450A0006D640 /* CoffeeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA89DA4C1B80450A0006D640 /* CoffeeManager.m */; };
 		FA89DA531B806F6B0006D640 /* CoffeeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA89DA521B806F6B0006D640 /* CoffeeCell.m */; };
 		FA89DA5A1B818E330006D640 /* drip-white.png in Resources */ = {isa = PBXBuildFile; fileRef = FA89DA591B818E330006D640 /* drip-white.png */; };
 		FA89DA5C1B818FF00006D640 /* appConstants.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA89DA5B1B818FF00006D640 /* appConstants.plist */; };
-		FA89DA621B8194B70006D640 /* CoffeeConst.m in Sources */ = {isa = PBXBuildFile; fileRef = FA89DA611B8194B70006D640 /* CoffeeConst.m */; };
+		FA89DA621B8194B70006D640 /* CoffeeHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = FA89DA611B8194B70006D640 /* CoffeeHelpers.m */; };
 		FA89DA9F1B8265810006D640 /* CoffeeLocalStore.m in Sources */ = {isa = PBXBuildFile; fileRef = FA89DA9E1B8265810006D640 /* CoffeeLocalStore.m */; };
 		FA89DAA91B861F400006D640 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FA89DAA81B861F400006D640 /* Reachability.m */; };
 		FA89DAAB1B862C6E0006D640 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA89DAAA1B862C6E0006D640 /* SystemConfiguration.framework */; };
@@ -123,14 +123,14 @@
 		FA89DA361B80149E0006D640 /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
 		FA89DA371B80149E0006D640 /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		FA89DA381B80149E0006D640 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
-		FA89DA4B1B80450A0006D640 /* CoffeeBrew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoffeeBrew.h; path = Model/CoffeeBrew.h; sourceTree = "<group>"; };
-		FA89DA4C1B80450A0006D640 /* CoffeeBrew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoffeeBrew.m; path = Model/CoffeeBrew.m; sourceTree = "<group>"; };
+		FA89DA4B1B80450A0006D640 /* CoffeeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoffeeManager.h; path = Model/CoffeeManager.h; sourceTree = "<group>"; };
+		FA89DA4C1B80450A0006D640 /* CoffeeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoffeeManager.m; path = Model/CoffeeManager.m; sourceTree = "<group>"; };
 		FA89DA511B806F6B0006D640 /* CoffeeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoffeeCell.h; path = View/CoffeeCell.h; sourceTree = "<group>"; };
 		FA89DA521B806F6B0006D640 /* CoffeeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoffeeCell.m; path = View/CoffeeCell.m; sourceTree = "<group>"; };
 		FA89DA591B818E330006D640 /* drip-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drip-white.png"; sourceTree = "<group>"; };
 		FA89DA5B1B818FF00006D640 /* appConstants.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = appConstants.plist; sourceTree = "<group>"; };
-		FA89DA601B8194B70006D640 /* CoffeeConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoffeeConst.h; path = Helpers/CoffeeConst.h; sourceTree = "<group>"; };
-		FA89DA611B8194B70006D640 /* CoffeeConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoffeeConst.m; path = Helpers/CoffeeConst.m; sourceTree = "<group>"; };
+		FA89DA601B8194B70006D640 /* CoffeeHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoffeeHelpers.h; path = Helpers/CoffeeHelpers.h; sourceTree = "<group>"; };
+		FA89DA611B8194B70006D640 /* CoffeeHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoffeeHelpers.m; path = Helpers/CoffeeHelpers.m; sourceTree = "<group>"; };
 		FA89DA9D1B8265810006D640 /* CoffeeLocalStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoffeeLocalStore.h; path = Model/CoffeeLocalStore.h; sourceTree = "<group>"; };
 		FA89DA9E1B8265810006D640 /* CoffeeLocalStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoffeeLocalStore.m; path = Model/CoffeeLocalStore.m; sourceTree = "<group>"; };
 		FA89DAA71B861F400006D640 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -327,8 +327,8 @@
 		FA89DA4A1B8044990006D640 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FA89DA4B1B80450A0006D640 /* CoffeeBrew.h */,
-				FA89DA4C1B80450A0006D640 /* CoffeeBrew.m */,
+				FA89DA4B1B80450A0006D640 /* CoffeeManager.h */,
+				FA89DA4C1B80450A0006D640 /* CoffeeManager.m */,
 				FA89DA9D1B8265810006D640 /* CoffeeLocalStore.h */,
 				FA89DA9E1B8265810006D640 /* CoffeeLocalStore.m */,
 				FA89DB521B8786C90006D640 /* Coffee.h */,
@@ -359,8 +359,8 @@
 			children = (
 				FA89DAA71B861F400006D640 /* Reachability.h */,
 				FA89DAA81B861F400006D640 /* Reachability.m */,
-				FA89DA601B8194B70006D640 /* CoffeeConst.h */,
-				FA89DA611B8194B70006D640 /* CoffeeConst.m */,
+				FA89DA601B8194B70006D640 /* CoffeeHelpers.h */,
+				FA89DA611B8194B70006D640 /* CoffeeHelpers.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -544,7 +544,7 @@
 				FA89D9CD1B7EE7630006D640 /* AppDelegate.m in Sources */,
 				FA89DA3F1B80149E0006D640 /* AFURLRequestSerialization.m in Sources */,
 				FA89DA3B1B80149E0006D640 /* AFHTTPSessionManager.m in Sources */,
-				FA89DA4D1B80450A0006D640 /* CoffeeBrew.m in Sources */,
+				FA89DA4D1B80450A0006D640 /* CoffeeManager.m in Sources */,
 				FA89DB421B8766FE0006D640 /* EXTScope.m in Sources */,
 				FA89DA9F1B8265810006D640 /* CoffeeLocalStore.m in Sources */,
 				FA89DA3C1B80149E0006D640 /* AFNetworkReachabilityManager.m in Sources */,
@@ -555,7 +555,7 @@
 				FA89DB4F1B8766FE0006D640 /* NSObject+MTLComparisonAdditions.m in Sources */,
 				FA89DA491B80149E0006D640 /* UIWebView+AFNetworking.m in Sources */,
 				FA89DA411B80149E0006D640 /* AFURLSessionManager.m in Sources */,
-				FA89DA621B8194B70006D640 /* CoffeeConst.m in Sources */,
+				FA89DA621B8194B70006D640 /* CoffeeHelpers.m in Sources */,
 				FA89DA421B80149E0006D640 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				FA89D9CA1B7EE7630006D640 /* main.m in Sources */,
 				FA89DB511B8766FE0006D640 /* NSValueTransformer+MTLPredefinedTransformerAdditions.m in Sources */,
@@ -758,6 +758,7 @@
 				FA89D9E91B7EE7630006D640 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FA89D9EA1B7EE7630006D640 /* Build configuration list for PBXNativeTarget "CoffeeBrewTests" */ = {
 			isa = XCConfigurationList;
@@ -766,6 +767,7 @@
 				FA89D9EC1B7EE7630006D640 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

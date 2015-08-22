@@ -1,12 +1,12 @@
 //
-//  CoffeeConst.m
+//  CoffeeHelpers.m
 //  CoffeeBrew
 //
 //  Created by Punnaghai Puvi on 8/17/15.
 //  Copyright (c) 2015 Punnaghai Puvi. All rights reserved.
 //
 
-#import "CoffeeConst.h"
+#import "CoffeeHelpers.h"
 #import "AppDelegate.h"
 #import "Reachability.h"
 
@@ -18,7 +18,7 @@ NSString * const FETCH_RECORD_COMPLETE = @"fetchRecordComplete";
 
 NSString * const COFFEE_LIST = @"coffeelist";
 
-@implementation CoffeeConst
+@implementation CoffeeHelpers
 
 -(NSString *) apiKey {
     if(_apiKey == nil){
@@ -40,9 +40,9 @@ NSString * const COFFEE_LIST = @"coffeelist";
     return _appLogo;
 }
 
-+ (CoffeeConst *)sharedInstance
++ (CoffeeHelpers *)sharedInstance
 {
-    static CoffeeConst * _sharedClient = nil;
+    static CoffeeHelpers * _sharedClient = nil;
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
@@ -53,7 +53,7 @@ NSString * const COFFEE_LIST = @"coffeelist";
 }
 
 - (UIImageView *) getNavigationImage {
-    NSString *appLogo = [[CoffeeConst sharedInstance] appLogo];
+    NSString *appLogo = [[CoffeeHelpers sharedInstance] appLogo];
     UIImage *logo = [UIImage imageNamed:appLogo];
     UIImage *newImage = [self imageWithImage:logo];
     UIImageView *imageView =  [[UIImageView alloc] initWithImage:newImage];
@@ -95,6 +95,23 @@ NSString * const COFFEE_LIST = @"coffeelist";
         return FALSE;
     }
     return TRUE;
+}
+
++(void) downloadImageWithURL:(NSString *)imageUrl completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock{
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:imageUrl]];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               if ( !error )
+                               {
+                                   //UIImage *image = [UIImage imageWithContentsOfFile:data];
+                                   UIImage *image = [[UIImage alloc] initWithData:data];
+                                   completionBlock(YES,image);
+                               } else{
+                                   completionBlock(NO,nil);
+                               }
+                           }];
 }
 
 

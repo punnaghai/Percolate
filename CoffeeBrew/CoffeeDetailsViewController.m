@@ -7,9 +7,9 @@
 //
 
 #import "CoffeeDetailsViewController.h"
-#import "CoffeeBrew.h"
+#import "CoffeeManager.h"
 #import "UIImageView+AFNetworking.h"
-#import "CoffeeConst.h"
+#import "CoffeeHelpers.h"
 #import "CoffeeLocalStore.h"
 
 @implementation CoffeeDetailsViewController
@@ -29,12 +29,12 @@
     UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:nil];
     self.navigationItem.rightBarButtonItem = shareItem;
     
-    self.navigationItem.titleView = [[CoffeeConst sharedInstance] getNavigationImage];
+    self.navigationItem.titleView = [[CoffeeHelpers sharedInstance] getNavigationImage];
     
-    if(![CoffeeLocalStore checkIfFileExists:coffeeId] && [CoffeeConst isNetworkAvailable]){
+    if(![CoffeeLocalStore checkIfFileExists:coffeeId] && [CoffeeHelpers isNetworkAvailable]){
         //file doesnt exist in cache
         
-        [CoffeeBrew getCoffeeDetails:self.coffeeId block:^(Coffee *coffee){
+        [CoffeeManager getCoffeeDetails:self.coffeeId block:^(Coffee *coffee){
             [CoffeeLocalStore cacheCoffee:coffee];
             [[NSNotificationCenter defaultCenter] postNotificationName:FETCH_RECORD_COMPLETE object:coffee];
         }];
@@ -61,11 +61,19 @@
         [cImageView removeFromSuperview];
     }
     else{
-        NSURL *imageUrl = [NSURL URLWithString:coffee.ImageURLString];
-        [cImageView setImageWithURL:imageUrl];
+        
+        [CoffeeHelpers downloadImageWithURL:coffee.ImageURLString completionBlock:^(BOOL succeeded, UIImage *image){
+            if (succeeded) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [cImageView setImage:image];
+                    
+                });
+            }
+        }];
     }
     
-    [CoffeeConst RemoveObservers:FETCH_RECORD_COMPLETE forObject:self];
+    [CoffeeHelpers RemoveObservers:FETCH_RECORD_COMPLETE forObject:self];
 }
 
 

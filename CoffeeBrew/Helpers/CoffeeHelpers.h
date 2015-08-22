@@ -1,5 +1,5 @@
 //
-//  CoffeeConst.h
+//  CoffeeHelpers.h
 //  CoffeeBrew
 //
 //  Created by Punnaghai Puvi on 8/17/15.
@@ -15,14 +15,14 @@ extern NSString * const COFFEE_LIST;
 
 extern NSString * const FETCH_RECORD_COMPLETE;
 
-@interface CoffeeConst : NSObject{
+@interface CoffeeHelpers : NSObject{
     NSDictionary * constDictionary;
 }
 
 @property (nonatomic, assign) NSString *apiKey;
 @property (nonatomic, assign) NSString *appLogo;
 
-+ (CoffeeConst *)sharedInstance;
++ (CoffeeHelpers *)sharedInstance;
 
 - (UIImageView *) getNavigationImage;
 
@@ -31,5 +31,7 @@ extern NSString * const FETCH_RECORD_COMPLETE;
 + (void) RemoveObservers:(NSString *)observerName forObject:(id) observerObject;
 
 +(BOOL) isNetworkAvailable;
+
++(void) downloadImageWithURL:(NSString *)imageUrl completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock;
 
 @end
