@@ -34,14 +34,14 @@
     if(![CoffeeLocalStore checkIfFileExists:coffeeId] && [CoffeeConst isNetworkAvailable]){
         //file doesnt exist in cache
         
-        [CoffeeBrew getCoffeeDetails:self.coffeeId block:^(CoffeeDetail *coffee){
+        [CoffeeBrew getCoffeeDetails:self.coffeeId block:^(Coffee *coffee){
             [CoffeeLocalStore cacheCoffee:coffee];
             [[NSNotificationCenter defaultCenter] postNotificationName:FETCH_RECORD_COMPLETE object:coffee];
         }];
     }
     else{
         //file exists in cache
-        [CoffeeLocalStore cachedCoffee:self.coffeeId block:^(CoffeeDetail *coffee){
+        [CoffeeLocalStore cachedCoffee:self.coffeeId block:^(Coffee *coffee){
             
             [[NSNotificationCenter defaultCenter] postNotificationName:FETCH_RECORD_COMPLETE object:coffee];
         }];
@@ -52,7 +52,7 @@
 -(void) fetchRecordComplete:(NSNotification*)notification{
     if(notification.object == nil)
         return;
-    CoffeeDetail *coffee = (CoffeeDetail *)notification.object;
+    Coffee *coffee = (Coffee *)notification.object;
     
     cTitle.text = coffee.Name;
     cDesc.text = coffee.Desc;

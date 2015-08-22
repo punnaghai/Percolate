@@ -1,14 +1,14 @@
 //
-//  CoffeeDetail.m
+//  Coffee.m
 //  CoffeeBrew
 //
 //  Created by Punnaghai Puvi on 8/21/15.
 //  Copyright (c) 2015 Punnaghai Puvi. All rights reserved.
 //
 
-#import "CoffeeDetail.h"
+#import "Coffee.h"
 
-@implementation CoffeeDetail
+@implementation Coffee
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     

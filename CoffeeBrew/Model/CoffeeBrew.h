@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
-#import "CoffeeDetail.h"
+#import "Coffee.h"
 
 extern NSString * const kCoffeeBaseURLString;
 extern NSString * const kCoffeeListString;
@@ -18,6 +18,6 @@ extern NSString * const kCoffeeDetails;
 
 //+ (CoffeeBrew *)sharedClient;
 +(void) getCoffeeList:(void (^)(NSArray *records))block;
-+(void) getCoffeeDetails:(NSString *)coffeeId block:(void (^)(CoffeeDetail *coffee))block;
++(void) getCoffeeDetails:(NSString *)coffeeId block:(void (^)(Coffee *coffee))block;
 
 @end

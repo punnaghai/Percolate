@@ -57,7 +57,7 @@
 		FA89DB4F1B8766FE0006D640 /* NSObject+MTLComparisonAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA89DB3C1B8766FE0006D640 /* NSObject+MTLComparisonAdditions.m */; };
 		FA89DB501B8766FE0006D640 /* NSValueTransformer+MTLInversionAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA89DB3E1B8766FE0006D640 /* NSValueTransformer+MTLInversionAdditions.m */; };
 		FA89DB511B8766FE0006D640 /* NSValueTransformer+MTLPredefinedTransformerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FA89DB401B8766FE0006D640 /* NSValueTransformer+MTLPredefinedTransformerAdditions.m */; };
-		FA89DB541B8786C90006D640 /* CoffeeDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = FA89DB531B8786C90006D640 /* CoffeeDetail.m */; };
+		FA89DB541B8786C90006D640 /* Coffee.m in Sources */ = {isa = PBXBuildFile; fileRef = FA89DB531B8786C90006D640 /* Coffee.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,8 +172,8 @@
 		FA89DB3E1B8766FE0006D640 /* NSValueTransformer+MTLInversionAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValueTransformer+MTLInversionAdditions.m"; sourceTree = "<group>"; };
 		FA89DB3F1B8766FE0006D640 /* NSValueTransformer+MTLPredefinedTransformerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValueTransformer+MTLPredefinedTransformerAdditions.h"; sourceTree = "<group>"; };
 		FA89DB401B8766FE0006D640 /* NSValueTransformer+MTLPredefinedTransformerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValueTransformer+MTLPredefinedTransformerAdditions.m"; sourceTree = "<group>"; };
-		FA89DB521B8786C90006D640 /* CoffeeDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoffeeDetail.h; path = Model/CoffeeDetail.h; sourceTree = "<group>"; };
-		FA89DB531B8786C90006D640 /* CoffeeDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoffeeDetail.m; path = Model/CoffeeDetail.m; sourceTree = "<group>"; };
+		FA89DB521B8786C90006D640 /* Coffee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Coffee.h; path = Model/Coffee.h; sourceTree = "<group>"; };
+		FA89DB531B8786C90006D640 /* Coffee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Coffee.m; path = Model/Coffee.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,8 +331,8 @@
 				FA89DA4C1B80450A0006D640 /* CoffeeBrew.m */,
 				FA89DA9D1B8265810006D640 /* CoffeeLocalStore.h */,
 				FA89DA9E1B8265810006D640 /* CoffeeLocalStore.m */,
-				FA89DB521B8786C90006D640 /* CoffeeDetail.h */,
-				FA89DB531B8786C90006D640 /* CoffeeDetail.m */,
+				FA89DB521B8786C90006D640 /* Coffee.h */,
+				FA89DB531B8786C90006D640 /* Coffee.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -534,7 +534,7 @@
 				FA89DA3A1B80149E0006D640 /* AFHTTPRequestOperationManager.m in Sources */,
 				FA89DA3E1B80149E0006D640 /* AFURLConnectionOperation.m in Sources */,
 				FA89DB411B8766FE0006D640 /* EXTRuntimeExtensions.m in Sources */,
-				FA89DB541B8786C90006D640 /* CoffeeDetail.m in Sources */,
+				FA89DB541B8786C90006D640 /* Coffee.m in Sources */,
 				FA89DA461B80149E0006D640 /* UIImageView+AFNetworking.m in Sources */,
 				FA89DB4E1B8766FE0006D640 /* NSError+MTLModelException.m in Sources */,
 				FA89DB501B8766FE0006D640 /* NSValueTransformer+MTLInversionAdditions.m in Sources */,

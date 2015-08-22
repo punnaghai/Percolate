@@ -40,7 +40,7 @@
     
 }
 
-+ (void)cacheCoffee:(CoffeeDetail *)coffee{
++ (void)cacheCoffee:(Coffee *)coffee{
     NSBlockOperation *saveCoffeeOperation = [[NSBlockOperation alloc] init];
     NSBlockOperation *weakOp = saveCoffeeOperation;
     [saveCoffeeOperation addExecutionBlock:^(void){
@@ -84,7 +84,7 @@
     }
 }
 
-+ (void) cachedCoffee:(NSString *)coffeeKey block:(void (^)(CoffeeDetail *coffee))block{
++ (void) cachedCoffee:(NSString *)coffeeKey block:(void (^)(Coffee *coffee))block{
     NSString *filePath = [self filePathForCoffeeTypeKey:coffeeKey];
     if (!filePath || ![[NSFileManager defaultManager] fileExistsAtPath:filePath]){
         if (block) {
@@ -100,10 +100,10 @@
     }
 }
 
-+ (CoffeeDetail *)deserializeCoffeeFromJSON:(NSDictionary *)coffeeJSON
++ (Coffee *)deserializeCoffeeFromJSON:(NSDictionary *)coffeeJSON
 {
     NSError *error;
-    CoffeeDetail *coffee = [MTLJSONAdapter modelOfClass:[CoffeeDetail class] fromJSONDictionary:coffeeJSON error:&error];
+    Coffee *coffee = [MTLJSONAdapter modelOfClass:[Coffee class] fromJSONDictionary:coffeeJSON error:&error];
     if (error) {
         NSLog(@"Couldn't convert coffee JSON to Coffee models: %@", error);
         return nil;
@@ -115,7 +115,7 @@
 + (NSArray *)deserializeCoffeeTypesFromJSON:(NSArray *)coffeeTypesJSON
 {
     NSError *error;
-    NSArray *coffeeTypes = [MTLJSONAdapter modelsOfClass:[CoffeeDetail class] fromJSONArray:coffeeTypesJSON error:&error];
+    NSArray *coffeeTypes = [MTLJSONAdapter modelsOfClass:[Coffee class] fromJSONArray:coffeeTypesJSON error:&error];
     if (error) {
         NSLog(@"Couldn't convert coffee JSON to Coffee models: %@", error);
         return nil;
@@ -142,7 +142,7 @@
     });
 }
 
-+ (void) serializeCoffeeToNSData:(CoffeeDetail *)coffeeType completion:(void(^)(NSData *jsonDictData))completion{
++ (void) serializeCoffeeToNSData:(Coffee *)coffeeType completion:(void(^)(NSData *jsonDictData))completion{
     NSError *error;
     
     NSDictionary *coffeeDict = [MTLJSONAdapter JSONDictionaryFromModel:coffeeType error:nil];

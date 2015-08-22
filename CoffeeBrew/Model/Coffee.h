@@ -1,5 +1,5 @@
 //
-//  CoffeeDetail.h
+//  Coffee.h
 //  CoffeeBrew
 //
 //  Created by Punnaghai Puvi on 8/21/15.
@@ -11,7 +11,7 @@
 #import "MTLJSONAdapter.h"
 #import "MTLModel.h"
 
-@interface CoffeeDetail : MTLModel <MTLJSONSerializing>
+@interface Coffee : MTLModel <MTLJSONSerializing>
 
 @property (nonatomic, copy) NSString *Identifier;
 @property (nonatomic, copy) NSString *Name;

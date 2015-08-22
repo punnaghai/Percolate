@@ -48,7 +48,7 @@ NSString * const kCoffeeDetails = @"api/coffee/%@";
         if([responseObject isKindOfClass:[NSArray class]]){
             NSArray *data = (NSArray *)responseObject;
             
-            NSArray *coffeeData = [MTLJSONAdapter modelsOfClass:CoffeeDetail.class fromJSONArray:data error:nil];
+            NSArray *coffeeData = [MTLJSONAdapter modelsOfClass:Coffee.class fromJSONArray:data error:nil];
             
             if (block) {
                 block(coffeeData);
@@ -61,7 +61,7 @@ NSString * const kCoffeeDetails = @"api/coffee/%@";
     [[[self class] sharedCoffeeRequestOperationQueue] addOperation:coffeelistRequestOperation];
 }
 
-+(void) getCoffeeDetails:(NSString *)coffeeId block:(void (^)(CoffeeDetail *coffee))block{
++(void) getCoffeeDetails:(NSString *)coffeeId block:(void (^)(Coffee *coffee))block{
     
     NSString *coffeeIdUrl = [NSString stringWithFormat:kCoffeeDetails,coffeeId];
     NSString *fullCoffeeListString = [NSString stringWithFormat:@"%@%@",kCoffeeBaseURLString,coffeeIdUrl];
@@ -75,7 +75,7 @@ NSString * const kCoffeeDetails = @"api/coffee/%@";
             
             NSDictionary *data = (NSDictionary *)responseObject;
             
-            CoffeeDetail *cDetail = [MTLJSONAdapter modelOfClass:CoffeeDetail.class fromJSONDictionary:data error:nil];
+            Coffee *cDetail = [MTLJSONAdapter modelOfClass:Coffee.class fromJSONDictionary:data error:nil];
             
             if (block) {
                 block(cDetail);

@@ -10,7 +10,7 @@
 #import "CoffeeTableViewController.h"
 #import "CoffeeDetailsViewController.h"
 #import "CoffeeBrew.h"
-#import "CoffeeDetail.h"
+#import "Coffee.h"
 #import "CoffeeCell.h"
 #import "CoffeeConst.h"
 #import "CoffeeLocalStore.h"
@@ -20,7 +20,7 @@ static NSString *coffeeCellIdentifier = @"CoffeeCell";
 
 @interface CoffeeTableViewController ()
 
--(CoffeeDetail *) getCoffeeDetails:(NSIndexPath *) indexPath;
+-(Coffee *) getCoffeeDetails:(NSIndexPath *) indexPath;
 -(void) loadContent;
 
 @end
@@ -70,7 +70,7 @@ NSArray *coffeeList;
 
 - (void)configureImageCell:(CoffeeCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     
-        CoffeeDetail *coffee = [self getCoffeeDetails:indexPath];
+        Coffee *coffee = [self getCoffeeDetails:indexPath];
         cell.title.text =coffee.Name;
         cell.desc.text = coffee.Desc;
     
@@ -138,7 +138,7 @@ NSArray *coffeeList;
     if ([segue.identifier isEqualToString:@"showCoffeeDetail"]) {
         
        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-       CoffeeDetail *selCoffee = [self getCoffeeDetails:indexPath];
+       Coffee *selCoffee = [self getCoffeeDetails:indexPath];
        CoffeeDetailsViewController *destViewController = segue.destinationViewController;
         destViewController.coffeeId = selCoffee.Identifier;
     }
@@ -192,8 +192,8 @@ NSArray *coffeeList;
     
 }
 
--(CoffeeDetail *) getCoffeeDetails:(NSIndexPath *) indexPath {
-    CoffeeDetail *coffeeItem = [coffeeList objectAtIndex:indexPath.row];
+-(Coffee *) getCoffeeDetails:(NSIndexPath *) indexPath {
+    Coffee *coffeeItem = [coffeeList objectAtIndex:indexPath.row];
     
     return coffeeItem;
 }

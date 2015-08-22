@@ -7,17 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CoffeeDetail.h"
+#import "Coffee.h"
 
 @interface CoffeeLocalStore : NSObject
 
-+ (void) cacheCoffee:(CoffeeDetail *)coffee;
++ (void) cacheCoffee:(Coffee *)coffee;
 
 + (void) cacheCoffeeTypes:(NSArray *)coffeeTypes;
 
 + (void) cachedCoffeeTypes :(void (^)(NSArray *coffeeList))block;
 
-+ (void) cachedCoffee:(NSString *)coffeeKey block:(void (^)(CoffeeDetail *coffee))block;
++ (void) cachedCoffee:(NSString *)coffeeKey block:(void (^)(Coffee *coffee))block;
 
 + (BOOL) checkIfFileExists :(NSString *)filename;
 

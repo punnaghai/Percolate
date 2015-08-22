@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Coffee.h"
-#import "CoffeeDetail.h"
+
 
 @interface CoffeeDetailsViewController : UIViewController
 
