@@ -31,27 +31,58 @@
     
     self.navigationItem.titleView = [[CoffeeHelpers sharedInstance] getNavigationImage];
     
-    if(![CoffeeLocalStore checkIfFileExists:coffeeId] && [CoffeeHelpers isNetworkAvailable]){
-        //file doesnt exist in cache
-        
+    [self loadContents];
+    
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - delegate methods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+        [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - helper methods
+
+-(void) loadContents {
+    
+    
+    BOOL cacheFileExists = [CoffeeLocalStore checkIfFileExists:self.coffeeId];
+    if([CoffeeHelpers isNetworkAvailable]){
         [CoffeeManager getCoffeeDetails:self.coffeeId block:^(Coffee *coffee){
-            [CoffeeLocalStore cacheCoffee:coffee];
+            if(!cacheFileExists)
+                [CoffeeLocalStore cacheCoffee:coffee];
             [[NSNotificationCenter defaultCenter] postNotificationName:FETCH_RECORD_COMPLETE object:coffee];
         }];
     }
     else{
-        //file exists in cache
-        [CoffeeLocalStore cachedCoffee:self.coffeeId block:^(Coffee *coffee){
+        if(cacheFileExists){
+            [CoffeeLocalStore cachedCoffee:self.coffeeId block:^(Coffee *coffee){
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:FETCH_RECORD_COMPLETE object:coffee];
+            }];
+        }
+        else{
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:FETCH_RECORD_COMPLETE object:coffee];
-        }];
+            [CoffeeHelpers RemoveObservers:FETCH_RECORD_COMPLETE forObject:self];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:[[CoffeeHelpers sharedInstance] internetMessage] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alertView show];
+            
+        }
         
     }
 }
 
 -(void) fetchRecordComplete:(NSNotification*)notification{
+    
     if(notification.object == nil)
         return;
+    
     Coffee *coffee = (Coffee *)notification.object;
     
     cTitle.text = coffee.Name;
@@ -77,9 +108,6 @@
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 @end

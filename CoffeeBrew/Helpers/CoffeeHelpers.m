@@ -18,6 +18,8 @@ NSString * const FETCH_RECORD_COMPLETE = @"fetchRecordComplete";
 
 NSString * const COFFEE_LIST = @"coffeelist";
 
+NSString * const NO_INTERNET_MESSAGE = @"no_internet_message";
+
 @implementation CoffeeHelpers
 
 -(NSString *) apiKey {
@@ -38,6 +40,16 @@ NSString * const COFFEE_LIST = @"coffeelist";
     }
     
     return _appLogo;
+}
+
+-(NSString *) internetMessage{
+    if(_internetMessage == nil){
+        AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        
+        _internetMessage = [delegate.dConstants valueForKey:NO_INTERNET_MESSAGE];
+    }
+    
+    return _internetMessage;
 }
 
 + (CoffeeHelpers *)sharedInstance

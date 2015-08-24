@@ -12,6 +12,7 @@
 extern NSString * const API_KEY;
 extern NSString * const APP_LOGO;
 extern NSString * const COFFEE_LIST;
+extern NSString * const NO_INTERNET_MESSAGE;
 
 extern NSString * const FETCH_RECORD_COMPLETE;
 
@@ -21,6 +22,7 @@ extern NSString * const FETCH_RECORD_COMPLETE;
 
 @property (nonatomic, assign) NSString *apiKey;
 @property (nonatomic, assign) NSString *appLogo;
+@property (nonatomic, assign) NSString *internetMessage;
 
 + (CoffeeHelpers *)sharedInstance;
 

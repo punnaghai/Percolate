@@ -8,5 +8,7 @@
 	<string>drip-white.png</string>
 	<key>coffee_list</key>
 	<string>coffeelist</string>
+	<key>no_internet_message</key>
+	<string>No Internet Available. Please try again.</string>
 </dict>
 </plist>

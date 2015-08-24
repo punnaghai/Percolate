@@ -28,8 +28,9 @@ NSArray *coffeeList;
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    
     self.navigationItem.titleView = [[CoffeeHelpers sharedInstance] getNavigationImage];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchRecordComplete:) name:FETCH_RECORD_COMPLETE object:nil];
     
     [self loadContent];
     
@@ -129,8 +130,6 @@ NSArray *coffeeList;
 
 - (void)loadContent {
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchRecordComplete:) name:FETCH_RECORD_COMPLETE object:nil];
-    
     BOOL cacheFileExists = [CoffeeLocalStore checkIfFileExists:COFFEE_LIST];
     if([CoffeeHelpers isNetworkAvailable]){
         [CoffeeManager getCoffeeList:^(NSArray *records){
@@ -149,7 +148,7 @@ NSArray *coffeeList;
         else{
             
             [CoffeeHelpers RemoveObservers:FETCH_RECORD_COMPLETE forObject:self];
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"No Internet Connection Avaialble" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:[[CoffeeHelpers sharedInstance] internetMessage] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
             [alertView show];
         }
         
